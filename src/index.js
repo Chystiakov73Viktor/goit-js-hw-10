@@ -37,24 +37,26 @@ function onSelect(evt) {
         return data;
       })
       .then(data => {
-        loaderEl.hidden = true;
         catInfoEl.hidden = false;
         catMarkupImg(data);
+        loaderEl.hidden = true;
       })
       .catch(monitorCondition);
   }
 }
 
 function monitorCondition() {
-  selectEl.hidden = true;
   loaderEl.hidden = true;
   errorEl.hidden = false;
-  Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!', {
-    position: 'left-top',
-    timeout: 4000,
-    width: '400px',
-    fontSize: '24px'
-});
+  Notiflix.Notify.failure(
+    'Oops! Something went wrong! Try reloading the page!',
+    {
+      position: 'left-top',
+      timeout: 4000,
+      width: '400px',
+      fontSize: '24px',
+    }
+  );
 }
 
 function catMarkupImg(data) {
@@ -75,6 +77,7 @@ function catMarkupImg(data) {
 }
 
 function catIdMarkup(data) {
+  loaderEl.hidden = true;
   data.map(cat => {
     selectEl.insertAdjacentHTML(
       'beforeend',
